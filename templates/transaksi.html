@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Transaksi Rawat Inap</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Input Transaksi Rawat Inap</h2>
+
+        <form method="POST">
+            <label>Pasien Lama</label>
+            <select name="id_pasien_niko">
+                <option value="">-- Pilih Pasien --</option>
+                {% for p in pasien_niko %}
+                <option value="{{ p.id_pasien_niko }}">{{ p.nama_niko }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Atau Pasien Baru</label>
+            <input type="text" name="nama_pasien_baru" placeholder="Nama Pasien Baru">
+            <input type="text" name="alamat_niko" placeholder="Alamat">
+            <input type="text" name="kontak_niko" placeholder="Kontak">
+
+            <label>Kamar</label>
+            <select name="id_kamar_niko" required>
+                {% for k in kamar_niko %}
+                <option value="{{ k.id_kamar_niko }}">
+                    {{ k.no_kamar_niko }} - {{ k.kelas_niko }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <label>Total Biaya</label>
+            <input type="number" name="total_biaya_niko" required>
+
+            <label>Status Pembayaran</label>
+            <select name="status_pembayaran_niko">
+                <option value="belum_lunas">Belum Lunas</option>
+                <option value="lunas">Lunas</option>
+            </select>
+
+            <label>Tanggal Keluar</label>
+            <input type="date" name="tgl_keluar_niko">
+
+            <button type="submit" class="btn-save">Simpan</button>
+            <a href="/pasien" class="btn-link-pasien">Tabel Pasien</a>
+        </form>
+    </div>
+
+    <div class="print-area">
+
+        <button onclick="window.print()" class="btn-save no-print">
+            Cetak PDF
+        </button>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nama Pasien</th>
+                <th>Kamar</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Tanggal Keluar</th>
+                <th class="no-print">Aksi</th>
+            </tr>
+
+            {% for r in data_niko %}
+            <tr>
+                <td>{{ r.id_transaksi_niko }}</td>
+                <td>{{ r.nama_niko }}</td>
+                <td>{{ r.no_kamar_niko }}</td>
+                <td>{{ r.total_biaya_niko | rupiah }}</td>
+                <td>
+                    {{ r.status_pembayaran_niko|replace('_',' ')|title }}
+                </td>
+                <td>{{ r.tgl_keluar_niko }}</td>
+                <td class="no-print">
+                    <a href="/edit/{{ r.id_transaksi_niko }}">Edit</a> |
+                    <a href="/delete/{{ r.id_transaksi_niko }}" onclick="return confirm('Yakin ingin menghapus data?')">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+
+
+</body>
+
+</html>

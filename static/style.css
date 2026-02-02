@@ -1,0 +1,233 @@
+/* =========================
+   RESET & GLOBAL
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #eef2f7, #dfe7f2);
+    padding: 30px 15px;
+    color: #2c3e50;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.container {
+    background: #ffffff;
+    max-width: 800px; /* Diperlebar sedikit agar tabel pasien lebih lega */
+    margin: 0 auto 40px auto;
+    padding: 28px 32px;
+    border-radius: 14px;
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.08),
+        0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================
+   JUDUL
+========================= */
+h2 {
+    text-align: center;
+    margin-bottom: 28px;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    color: #1f2d3d;
+}
+
+/* =========================
+   FORM
+========================= */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    color: #34495e;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    border-radius: 8px;
+    border: 1px solid #dfe4ea;
+    font-size: 14px;
+    background-color: #fdfefe;
+    transition: all 0.25s ease;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #3498db;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+/* =========================
+   BUTTON
+========================= */
+.btn-save {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, #3498db, #2e86de);
+    border: none;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.btn-save:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(52, 152, 219, 0.35);
+}
+
+.btn-back {
+    display: inline-flex;
+    padding: 10px 20px;
+    background: #7f8c8d;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+/* =========================
+   TAMBAHAN CSS BUTTON TABEL PASIEN
+========================= */
+.btn-link-pasien {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: transparent;
+    color: #3498db;
+    border: 2px solid #3498db;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-link-pasien:hover {
+    background-color: #3498db;
+    color: #ffffff;
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+}
+
+/* =========================
+   TABLE
+========================= */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Lebih konsisten untuk print */
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+table th {
+    background: #2c3e50;
+    color: #ffffff;
+    padding: 14px;
+    text-align: left;
+    font-size: 13px;
+}
+
+table td {
+    padding: 14px;
+    border-bottom: 1px solid #eef1f5;
+    font-size: 14px;
+}
+
+/* =========================
+   PRINT SETTINGS
+========================= */
+@media print {
+    body {
+        background: none;
+        padding: 0;
+    }
+    .container {
+        box-shadow: none;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .no-print {
+        display: none !important;
+    }
+    table {
+        border: 1px solid #ccc;
+    }
+    table th {
+        background: #eee !important;
+        color: #000 !important;
+        border: 1px solid #ccc;
+    }
+    table td {
+        border: 1px solid #ccc;
+    }
+}
+
+/* =========================
+   PRINT SETTINGS (ONLY TABLE)
+========================= */
+@media print {
+
+    /* Sembunyikan SEMUA elemen */
+    body * {
+        visibility: hidden;
+    }
+
+    /* Tampilkan hanya area tabel */
+    .print-area,
+    .print-area * {
+        visibility: visible;
+    }
+
+    /* Posisikan tabel ke halaman */
+    .print-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+
+    /* Hilangkan elemen yang tidak perlu */
+    .no-print {
+        display: none !important;
+    }
+
+    /* Styling tabel saat print */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    table th,
+    table td {
+        border: 1px solid #000;
+        padding: 10px;
+        font-size: 12px;
+        color: #000;
+    }
+
+    table th {
+        background: #eee !important;
+    }
+}

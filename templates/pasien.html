@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Pasien</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Daftar Pasien</h2>
+        
+        <div class="no-print" style="margin-bottom: 20px; text-align: center;">
+            <a href="/" class="btn-back"> Kembali ke Transaksi</a>
+            <button onclick="window.print()" class="btn-save" style="width: auto; display: inline-block; margin-left: 10px;">Cetak Data</button>
+        </div>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID Pasien</th>
+                    <th>Nama Pasien</th>
+                    <th>Alamat</th>
+                    <th>Kontak</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in pasien_niko %}
+                <tr>
+                    <td>{{ r.id_pasien_niko }}</td>
+                    <td>{{ r.nama_niko }}</td>
+                    <td>{{ r.alamat_niko }}</td>
+                    <td>{{ r.kontak_niko }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

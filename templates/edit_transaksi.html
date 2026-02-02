@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Transaksi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Edit Transaksi</h2>
+
+        <form method="POST" action="/update/{{ transaksi.id_transaksi_niko }}">
+            <label>Pasien</label>
+            <select name="id_pasien_niko">
+                {% for p in pasien_niko %}
+                <option value="{{ p.id_pasien_niko }}" {% if p.id_pasien_niko==transaksi.id_pasien_niko %}selected{%
+                    endif %}>
+                    {{ p.nama_niko }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <label>Kamar</label>
+            <select name="id_kamar_niko">
+                {% for k in kamar_niko %}
+                <option value="{{ k.id_kamar_niko }}" {% if k.id_kamar_niko==transaksi.id_kamar_niko %}selected{%
+                    endif %}>
+                    {{ k.no_kamar_niko }} - {{ k.kelas_niko }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <label>Total Biaya</label>
+            <input type="number" name="total_biaya_niko" value="{{ transaksi.total_biaya_niko }}" required>
+
+            <label>Status Pembayaran</label>
+            <select name="status_pembayaran_niko">
+                <option value="belum_lunas" {% if transaksi.status_pembayaran_niko=='belum_lunas' %}selected{% endif
+                    %}>
+                    Belum Lunas
+                </option>
+                <option value="lunas" {% if transaksi.status_pembayaran_niko=='lunas' %}selected{% endif %}>
+                    Lunas
+                </option>
+            </select>
+
+            <label>Tanggal Keluar</label>
+            <input type="date" name="tgl_keluar_niko" value="{{ transaksi.tgl_keluar_niko }}">
+
+            <button type="submit" class="btn-save">Update Data</button>
+        </form>
+    </div>
+
+    <a href="{{ url_for('transaksi_niko') }}" class="btn-back">Kembali</a>
+
+</body>
+
+</html>
