@@ -157,6 +157,9 @@ table td {
 /* =========================
    PRINT SETTINGS
 ========================= */
+
+/* print tabel transaksi */
+
 @media print {
     body {
         background: none;
